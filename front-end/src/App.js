@@ -15,6 +15,7 @@ class App extends React.Component{
     this.handleAddToDos = this.handleAddToDos.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
   }
 
 componentDidMount() {
@@ -61,6 +62,19 @@ handleSubmit(event) {
       })
   }).catch(error => console.error({'Error': error}))
 }
+deleteItem(id) {
+  fetch(URL + id, {
+    method: 'DELETE'
+  }).then( response => {
+    const findIndex = this.state.todos.findIndex(item => item._id === id)
+
+    const copyTodos = [...this.state.todos]
+    copyTodos.splice(findIndex, 1)
+    this.setState({todos: copyTodos})
+  })
+}
+
+
 
 
 
@@ -73,7 +87,7 @@ handleSubmit(event) {
         {this.state.todos.map(item => {
           return(
             <div key={item._id}>
-              <h3>{item.name}</h3>
+              <h3 onClick={(()=>this.deleteItem(item._id))}>{item.name}</h3>
               <p>{item.description}</p>
             </div>
           )
@@ -86,6 +100,7 @@ handleSubmit(event) {
             <input type='submit' value = 'Create to do item' />
 
         </form>
+        
     </div>
   );
 }
