@@ -18,6 +18,10 @@ mongoose.connection.once('open', ()=>{
 app.get('/', (req, res)=> {
     res.send('Hello World!')
 })
+
+const todosController = require('./controllers/todo')
+app.use('/todos', todosController)
+
 app.listen (PORT, ()=>{
     console.log('Im spying on you')
 })
