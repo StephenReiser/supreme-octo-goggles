@@ -74,7 +74,15 @@ deleteItem(id) {
   })
 }
 
-
+// updateItem(item) {
+//   fetch(URL, {
+//     method: 'PUT',
+//     body: JSON.stringify({completed: !item.completed}),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+// }
 
 
 
@@ -89,6 +97,7 @@ deleteItem(id) {
             <div key={item._id}>
               <h3 onClick={(()=>this.deleteItem(item._id))}>{item.name}</h3>
               <p>{item.description}</p>
+              <h4>{item.completed ? 'True': 'False'}</h4>
             </div>
           )
         })}
