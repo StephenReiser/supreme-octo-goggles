@@ -33,6 +33,14 @@ getTodos() {
     return (
     <div className="container">
         <h1>words</h1>
+        {this.state.todos.map(item => {
+          return(
+            <div key={item._id}>
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+            </div>
+          )
+        })}
     </div>
   );
 }
